@@ -159,8 +159,8 @@ You might have to hover over the row number and collapse to find the end of the 
 ```javascript
 {}
 ```
-
 Create a json file called `input.json` and paste the content inside. We will be using it later.
+
 ---
 
 ## Step 9 - Verify on HeLa Scan
