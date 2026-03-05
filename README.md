@@ -55,15 +55,8 @@ added 291 packages in 30s
 ---
 
 ## Step 3 - Configure Environment
-```bash
-# Windows
-copy .env.example .env
 
-# Mac / Linux
-cp .env.example .env
-```
-
-Open `.env` and paste your MetaMask deployer private key:
+Create and open `.env` and paste your MetaMask deployer private key:
 ```
 HELA_PRIVATE_KEY_DEPLOY_ACCOUNT=0xYOUR_PRIVATE_KEY_HERE
 ```
