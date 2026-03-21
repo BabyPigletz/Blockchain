@@ -12,10 +12,10 @@ const CONFIG = {
   // Replace with values from deployedData.json after running deploy.js
   CONTRACT_ADDRESS: "",
 
-  // Private key of the AI oracle wallet (from deployedData.json)
-  // This is used OFF-CHAIN in the browser to sign AI results before submitting to the contract. The contract verifies this signature.
-  // In production this would be a backend service — for demo it lives here.
-  ORACLE_PRIVATE_KEY: "",
+  // Oracle server URL — the oracle runs as a separate Node.js server.
+  // Risk scoring and signing happen server-side; private key never reaches the browser.
+  // Start the server: cd oracle-server && npm install && npm start
+  ORACLE_URL: "http://localhost:3001",
 
   // Copy from artifacts/contracts/FinFlowPayments.sol/FinFlowPayments.json
   CONTRACT_ABI: [

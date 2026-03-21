@@ -25,8 +25,6 @@
   @keyframes spin { to { transform: rotate(360deg); } }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
   .fade-in { animation: fadeIn 0.3s ease; }
-
-  /* Layout */
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
   .field-label { font-size: 12px; color: var(--muted); display: block; margin-bottom: 6px; font-weight: 500; }
   .field-input { width: 100%; background: var(--surface2); border: 1px solid var(--border2); border-radius: 10px; padding: 12px 14px; color: var(--text); font-size: 14px; outline: none; font-family: 'DM Mono', monospace; transition: border-color 0.2s; }
@@ -35,55 +33,37 @@
   .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
   .btn-secondary { padding: 8px 16px; border: 1px solid var(--border2); border-radius: 8px; background: var(--surface2); color: var(--text); font-size: 13px; font-weight: 500; transition: all 0.2s; }
   .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
-
-  /* Tab bar */
   .tab-btn { padding: 8px 18px; border-radius: 8px; border: none; font-size: 13px; background: transparent; color: var(--muted); transition: all 0.15s; }
   .tab-btn.active { background: var(--surface2); color: var(--text); font-weight: 600; }
-
-  /* Tx table */
   .tx-grid { display: grid; grid-template-columns: 50px 1fr 120px 80px 95px 85px; align-items: center; gap: 12px; padding: 13px 20px; border-bottom: 1px solid var(--border); font-size: 13px; }
   .tx-grid:hover { background: #0f172a55; }
   .tx-header { font-size: 10px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--surface2) !important; }
-
-  /* Alerts */
   .alert-error { background: #2e0d0d; border: 1px solid #7f1d1d; border-radius: 10px; padding: 12px 14px; font-size: 13px; color: #f87171; margin-top: 10px; }
   .alert-success { background: #0d2e1a; border: 1px solid #14532d; border-radius: 10px; padding: 12px 14px; font-size: 13px; color: #22c55e; margin-top: 10px; }
   .alert-info { background: #0c1f30; border: 1px solid #1e3a5f; border-radius: 10px; padding: 12px 14px; font-size: 13px; color: #7dd3fc; margin-top: 10px; }
-
-  /* Spinner */
   .spinner { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--blue); border-top-color: transparent; animation: spin 0.8s linear infinite; display: inline-block; vertical-align: middle; margin-right: 8px; }
 </style>
 </head>
 <body>
 
-<!-- CONNECT SCREEN -->
-
 <div id="screen-connect" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;">
   <div style="position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 20%,#0ea5e908,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 80%,#6366f108,transparent 50%);pointer-events:none;"></div>
   <div style="position:fixed;inset:0;background-image:linear-gradient(#0f172a33 1px,transparent 1px),linear-gradient(90deg,#0f172a33 1px,transparent 1px);background-size:40px 40px;pointer-events:none;"></div>
-
   <div style="position:relative;z-index:1;text-align:center;max-width:500px;">
     <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:32px;">
       <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#0ea5e9,#6366f1);display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 0 32px #0ea5e944;">⚡</div>
       <span style="font-size:30px;font-weight:800;letter-spacing:-0.03em;">FinFlow</span>
     </div>
-
     <h1 style="font-size:44px;font-weight:800;line-height:1.05;margin-bottom:16px;letter-spacing:-0.04em;">
       Decentralized<br>
       <span style="background:linear-gradient(135deg,#0ea5e9,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Payment Rail</span>
     </h1>
-    <p style="color:var(--muted);font-size:15px;line-height:1.7;margin-bottom:12px;">
-      AI-powered risk scoring · On-chain settlement · Escrow protection
-    </p>
-    <p style="color:var(--dim);font-size:13px;margin-bottom:40px;">
-      Deployed on HeLa Testnet · Pillar 2: Payments &amp; Finance
-    </p>
-
+    <p style="color:var(--muted);font-size:15px;line-height:1.7;margin-bottom:12px;">AI-powered risk scoring · On-chain settlement · Escrow protection</p>
+    <p style="color:var(--dim);font-size:13px;margin-bottom:40px;">Deployed on HeLa Testnet · Pillar 2: Payments &amp; Finance</p>
     <button onclick="connectWallet()" id="connect-btn" style="padding:16px 48px;border:none;border-radius:14px;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;font-weight:700;font-size:16px;box-shadow:0 4px 24px #0ea5e966;transition:all 0.2s;display:inline-flex;align-items:center;gap:10px;cursor:pointer;">
       <span>🦊</span> Connect MetaMask
     </button>
     <div id="connect-error" style="margin-top:16px;"></div>
-
     <div style="margin-top:40px;display:flex;gap:32px;justify-content:center;">
       <div style="text-align:center;"><div style="font-size:20px;font-weight:800;color:var(--blue);font-family:'DM Mono',monospace;">0.5%</div><div style="font-size:11px;color:var(--dim);margin-top:2px;">Protocol Fee</div></div>
       <div style="text-align:center;"><div style="font-size:20px;font-weight:800;color:var(--green);font-family:'DM Mono',monospace;">~12s</div><div style="font-size:11px;color:var(--dim);margin-top:2px;">Settlement</div></div>
@@ -93,11 +73,8 @@
   </div>
 </div>
 
-<!-- MAIN APP -->
-
 <div id="screen-app" style="display:none;min-height:100vh;">
 
-  <!-- Header -->
   <div style="border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;background:#020b18dd;backdrop-filter:blur(12px);">
     <div style="display:flex;align-items:center;gap:8px;">
       <div style="width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#0ea5e9,#6366f1);display:flex;align-items:center;justify-content:center;font-size:13px;">⚡</div>
@@ -124,143 +101,85 @@
     </div>
   </div>
 
-  <!-- Stats -->
   <div style="padding:16px 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;border-bottom:1px solid var(--surface2);">
-    <div class="card" style="padding:14px 16px;">
-      <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">On-Chain Payments</div>
-      <div style="font-size:20px;font-weight:700;font-family:'DM Mono',monospace;" id="stat-total">—</div>
-    </div>
-    <div class="card" style="padding:14px 16px;">
-      <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">My Sent</div>
-      <div style="font-size:20px;font-weight:700;font-family:'DM Mono',monospace;" id="stat-sent">—</div>
-    </div>
-    <div class="card" style="padding:14px 16px;">
-      <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">My Received</div>
-      <div style="font-size:20px;font-weight:700;font-family:'DM Mono',monospace;" id="stat-received">—</div>
-    </div>
-    <div class="card" style="padding:14px 16px;">
-      <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">Contract</div>
-      <div style="font-size:11px;font-weight:600;font-family:'DM Mono',monospace;color:var(--blue);" id="stat-contract">—</div>
-    </div>
+    <div class="card" style="padding:14px 16px;"><div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">On-Chain Payments</div><div style="font-size:20px;font-weight:700;font-family:'DM Mono',monospace;" id="stat-total">—</div></div>
+    <div class="card" style="padding:14px 16px;"><div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">My Sent</div><div style="font-size:20px;font-weight:700;font-family:'DM Mono',monospace;" id="stat-sent">—</div></div>
+    <div class="card" style="padding:14px 16px;"><div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">My Received</div><div style="font-size:20px;font-weight:700;font-family:'DM Mono',monospace;" id="stat-received">—</div></div>
+    <div class="card" style="padding:14px 16px;"><div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">Contract</div><div style="font-size:11px;font-weight:600;font-family:'DM Mono',monospace;color:var(--blue);" id="stat-contract">—</div></div>
   </div>
 
-  <!-- Tab Content -->
   <div style="max-width:1200px;margin:0 auto;padding:24px;">
 
-    <!-- ── SEND TAB ── -->
     <div id="content-send" style="display:grid;grid-template-columns:400px 1fr;gap:24px;">
-
       <div>
         <div class="card">
           <h2 style="font-size:16px;font-weight:700;margin-bottom:20px;">💸 Send Payment</h2>
-
           <div style="display:flex;flex-direction:column;gap:14px;">
-            <div>
-              <label class="field-label">Recipient Address</label>
-              <input id="to-address" class="field-input" placeholder="0x..." />
-            </div>
+            <div><label class="field-label">Recipient Address</label><input id="to-address" class="field-input" placeholder="0x..." oninput="triggerAI()" /></div>
             <div>
               <label class="field-label">Amount (HELA)</label>
               <input id="send-amount" class="field-input" type="number" placeholder="0.000" step="0.001" min="0.001" oninput="onAmountInput()" />
               <div id="fee-preview" style="font-size:11px;color:var(--muted);margin-top:5px;font-family:'DM Mono',monospace;display:none;"></div>
             </div>
-            <div>
-              <label class="field-label">Memo (max 256 chars)</label>
-              <input id="send-memo" class="field-input" placeholder="What's this payment for?" maxlength="256" oninput="onMemoInput()" />
-            </div>
-
-            <!-- AI Risk -->
-            <div id="ai-loading" style="display:none;font-size:12px;color:var(--muted);align-items:center;">
-              <span class="spinner"></span>Analyzing risk with AI oracle...
-            </div>
+            <div><label class="field-label">Memo (max 256 chars)</label><input id="send-memo" class="field-input" placeholder="What's this payment for?" maxlength="256" oninput="onMemoInput()" /></div>
+            <div id="ai-loading" style="display:none;font-size:12px;color:var(--muted);align-items:center;"><span class="spinner"></span>Analyzing risk with AI oracle...</div>
             <div id="ai-result" style="display:none;"></div>
-
             <div id="send-msg" style="display:none;"></div>
-
             <button class="btn-primary" onclick="sendPayment()" id="send-btn">Send Payment →</button>
           </div>
         </div>
-
-        <!-- How it works -->
         <div class="card" style="margin-top:16px;">
           <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;">HOW IT WORKS</div>
           <div style="display:flex;flex-direction:column;gap:10px;">
-            <div style="display:flex;gap:10px;"><span>🤖</span><div><div style="font-size:12px;font-weight:600;color:#cbd5e1;">AI Risk Scoring</div><div style="font-size:11px;color:var(--muted);">Score computed off-chain, hash stored on-chain</div></div></div>
+            <div style="display:flex;gap:10px;"><span>🤖</span><div><div style="font-size:12px;font-weight:600;color:#cbd5e1;">AI Risk Scoring</div><div style="font-size:11px;color:var(--muted);">Score computed off-chain, oracle signature verified on-chain</div></div></div>
             <div style="display:flex;gap:10px;"><span>🔒</span><div><div style="font-size:12px;font-weight:600;color:#cbd5e1;">Auto-Escrow at Risk ≥ 75</div><div style="font-size:11px;color:var(--muted);">High-risk payments locked until approved</div></div></div>
             <div style="display:flex;gap:10px;"><span>⛓</span><div><div style="font-size:12px;font-weight:600;color:#cbd5e1;">On-Chain Forever</div><div style="font-size:11px;color:var(--muted);">Every transaction stored on HeLa blockchain</div></div></div>
             <div style="display:flex;gap:10px;"><span>💰</span><div><div style="font-size:12px;font-weight:600;color:#cbd5e1;">0.5% Protocol Fee</div><div style="font-size:11px;color:var(--muted);">vs 2–3% Stripe/PayPal — stays on-chain</div></div></div>
           </div>
         </div>
       </div>
-
-      <!-- Recent transactions -->
       <div class="card" style="padding:0;overflow:hidden;">
         <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
           <h2 style="font-size:14px;font-weight:700;">Recent On-Chain Transactions</h2>
           <button class="btn-secondary" onclick="loadMyPayments()">↻ Refresh</button>
         </div>
-        <div class="tx-grid tx-header">
-          <div>#</div><div>MEMO / ROUTE</div><div style="text-align:right;">AMOUNT</div><div>RISK</div><div>STATUS</div><div style="text-align:right;">TIME</div>
-        </div>
+        <div class="tx-grid tx-header"><div>#</div><div>MEMO / ROUTE</div><div style="text-align:right;">AMOUNT</div><div>RISK</div><div>STATUS</div><div style="text-align:right;">TIME</div></div>
         <div id="recent-txs"><div style="padding:40px;text-align:center;color:var(--muted);font-size:13px;">Connect wallet and send a payment to see transactions here</div></div>
       </div>
     </div>
 
-    <!-- ── LEDGER TAB ── -->
     <div id="content-ledger" style="display:none;">
       <div class="card" style="padding:0;overflow:hidden;">
         <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
           <div>
             <h2 style="font-size:14px;font-weight:700;">My Transaction Ledger</h2>
-            <div style="font-size:12px;color:var(--muted);margin-top:4px;">
-              Contract: <a id="contract-link" href="#" target="_blank" style="color:var(--blue);font-family:'DM Mono',monospace;font-size:11px;">—</a>
-            </div>
+            <div style="font-size:12px;color:var(--muted);margin-top:4px;">Contract: <a id="contract-link" href="#" target="_blank" style="color:var(--blue);font-family:'DM Mono',monospace;font-size:11px;">—</a></div>
           </div>
           <button class="btn-secondary" onclick="loadMyPayments()">↻ Refresh from Chain</button>
         </div>
-        <div class="tx-grid tx-header">
-          <div>#</div><div>MEMO / ROUTE</div><div style="text-align:right;">AMOUNT</div><div>RISK</div><div>STATUS</div><div style="text-align:right;">TIME</div>
-        </div>
+        <div class="tx-grid tx-header"><div>#</div><div>MEMO / ROUTE</div><div style="text-align:right;">AMOUNT</div><div>RISK</div><div>STATUS</div><div style="text-align:right;">TIME</div></div>
         <div id="all-txs"><div style="padding:40px;text-align:center;color:var(--muted);font-size:13px;"><span class="spinner"></span>Loading from blockchain...</div></div>
       </div>
     </div>
 
-    <!-- ── ESCROW TAB ── -->
-    <div id="content-escrow" style="display:none;display:none;grid-template-columns:1fr 1fr;gap:24px;">
-
+    <div id="content-escrow" style="display:none;grid-template-columns:1fr 1fr;gap:24px;">
       <div class="card">
         <h2 style="font-size:16px;font-weight:700;margin-bottom:16px;">🔒 Manage Escrow</h2>
-        <p style="font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6;">
-          Escrowed payments are locked in the smart contract. As the <strong style="color:var(--text);">sender</strong> or <strong style="color:var(--text);">contract owner</strong>, you can release funds to the recipient or refund them back to yourself.
-        </p>
-
+        <p style="font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6;">Escrowed payments are locked in the smart contract. As the <strong style="color:var(--text);">sender</strong> or <strong style="color:var(--text);">contract owner</strong>, you can release funds to the recipient or refund them back to yourself.</p>
         <div style="display:flex;flex-direction:column;gap:14px;">
-          <div>
-            <label class="field-label">Payment ID</label>
-            <input id="escrow-id" class="field-input" type="number" placeholder="e.g. 3" min="1" />
-          </div>
+          <div><label class="field-label">Payment ID</label><input id="escrow-id" class="field-input" type="number" placeholder="e.g. 3" min="1" /></div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-            <button onclick="releaseEscrow()" class="btn-primary" style="background:linear-gradient(135deg,#16a34a,#059669);">
-              ✓ Release to Recipient
-            </button>
-            <button onclick="refundEscrow()" class="btn-primary" style="background:linear-gradient(135deg,#b91c1c,#dc2626);">
-              ↩ Refund to Sender
-            </button>
+            <button onclick="releaseEscrow()" class="btn-primary" style="background:linear-gradient(135deg,#16a34a,#059669);">✓ Release to Recipient</button>
+            <button onclick="refundEscrow()" class="btn-primary" style="background:linear-gradient(135deg,#b91c1c,#dc2626);">↩ Refund to Sender</button>
           </div>
           <div id="escrow-msg" style="display:none;"></div>
         </div>
       </div>
-
       <div class="card">
         <h2 style="font-size:16px;font-weight:700;margin-bottom:16px;">Lookup Payment</h2>
         <div style="display:flex;flex-direction:column;gap:14px;">
-          <div>
-            <label class="field-label">Payment ID to Inspect</label>
-            <input id="lookup-id" class="field-input" type="number" placeholder="e.g. 1" min="1" />
-          </div>
-          <button onclick="lookupPayment()" class="btn-primary" style="background:linear-gradient(135deg,#475569,#334155);">
-            🔍 Fetch from Chain
-          </button>
+          <div><label class="field-label">Payment ID to Inspect</label><input id="lookup-id" class="field-input" type="number" placeholder="e.g. 1" min="1" /></div>
+          <button onclick="lookupPayment()" class="btn-primary" style="background:linear-gradient(135deg,#475569,#334155);">🔍 Fetch from Chain</button>
           <div id="lookup-result" style="display:none;"></div>
         </div>
       </div>
@@ -269,17 +188,14 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════════════════════ -->
 <script>
-// ─── State ───────────────────────────────────────────────────────────────────
-let provider, signer, contract, walletAddress, oracleWallet;
-let myPayments = []; // cached from chain
+let provider, signer, contract, walletAddress;
+let myPayments = [];
 let aiDebounce = null;
 let currentRiskScore = 10;
 let currentAiHash = ethers.ZeroHash;
 let currentAiSignature = "0x";
 
-// ─── Status helpers ───────────────────────────────────────────────────────────
 const STATUS = ["Pending","Completed","Escrowed","Released","Refunded"];
 const STATUS_STYLE = {
   Completed: { bg:"#0d2e1a", color:"#22c55e", dot:"#16a34a" },
@@ -288,20 +204,21 @@ const STATUS_STYLE = {
   Refunded:  { bg:"#2e0d0d", color:"#f87171", dot:"#dc2626" },
   Pending:   { bg:"#1a1a1a", color:"#94a3b8", dot:"#475569" },
 };
+
+function extractErrorMessage(error) {
+  if (!error) return "Transaction failed";
+  if (typeof error === "string") return error;
+  if (error?.info?.error?.data?.message) return error.info.error.data.message;
+  if (error?.data?.message) return error.data.message;
+  if (error?.reason) return error.reason;
+  if (error?.message) return error.message;
+  return "Transaction failed";
+}
+
 function riskColor(s) { return s<30?"#22c55e":s<60?"#f59e0b":s<80?"#f97316":"#ef4444"; }
 function shortAddr(a) { return a ? a.slice(0,6)+"..."+a.slice(-4) : "—"; }
 function fmtTime(ts) { return new Date(Number(ts)*1000).toLocaleDateString("en-SG",{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}); }
 function fmtEther(v) { return parseFloat(ethers.formatEther(v)).toFixed(4); }
-
-// ─── AI Risk Scoring (off-chain simulation) ───────────────────────────────────
-function inferCategory(memo) {
-  const m = memo.toLowerCase();
-  if (m.match(/coffee|food|eat|lunch|dinner|pizza/)) return "Food & Beverage";
-  if (m.match(/rent|house|apartment|lease/)) return "Housing";
-  if (m.match(/invoice|service|work|contract|freelance/)) return "Business";
-  if (m.match(/gift|birthday|thanks/)) return "Gift";
-  return "Other";
-}
 
 async function refreshBalance() {
   const balance = await provider.getBalance(walletAddress);
@@ -309,53 +226,20 @@ async function refreshBalance() {
 }
 
 async function computeAIScore(to, amount, memo) {
-  // ── Step 1: Off-chain AI inference ───────────────────────────────────────
-  // Simulates what a real AI backend API would return
-  await new Promise(r => setTimeout(r, 800));
-  let score = 8;
-  if (parseFloat(amount) > 1) score += 20;
-  if (parseFloat(amount) > 5) score += 30;
-  if (!memo || memo.length < 3) score += 20;
-  score = Math.min(100, score + Math.floor(Math.random() * 10));
-
-  const category = inferCategory(memo);
-  const metaJson = JSON.stringify({ score, category, ts: Date.now() });
-
-  // ── Step 2: Hash the AI metadata (stored on-chain) ───────────────────────
-  const aiMetaHash = ethers.keccak256(ethers.toUtf8Bytes(metaJson));
-
-  // ── Step 3: Oracle signs the result ──────────────────────────────────────
-  // The oracle wallet signs: keccak256(sender, recipient, riskScore, aiMetaHash)
-  // The contract will call ecrecover() to verify this on-chain.
-  // This proves the risk score genuinely came from our AI oracle.
-  let aiSignature = "0x";
-  try {
-    const oracleWallet = new ethers.Wallet(CONFIG.ORACLE_PRIVATE_KEY);
-    const msgHash = ethers.keccak256(
-      ethers.solidityPacked(
-        ["address", "address", "uint8", "bytes32"],
-        [walletAddress, to, score, aiMetaHash]
-      )
-    );
-    // Sign with Ethereum prefix (\x19Ethereum Signed Message:\n32)
-    aiSignature = await oracleWallet.signMessage(ethers.getBytes(msgHash));
-  } catch (e) {
-    console.warn("Oracle signing failed — check ORACLE_PRIVATE_KEY in config.js", e.message);
+  // Sends payment details to the oracle server.
+  // The server computes the risk score and signs it — private key never touches the browser.
+  const response = await fetch(CONFIG.ORACLE_URL + "/assess", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ sender: walletAddress, recipient: to, amount, memo }),
+  });
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error("Oracle server error: " + (err.error || response.statusText));
   }
-
-  return {
-    riskScore: score,
-    category,
-    confidence: 0.87 + Math.random() * 0.1,
-    flags: score > 50 ? ["high_value","new_recipient"] : [],
-    recommendation: score >= 75 ? "escrow" : score >= 40 ? "review" : "approve",
-    metaJson,
-    aiMetaHash,
-    aiSignature,  // ← passed to contract for on-chain verification
-  };
+  return await response.json();
 }
 
-// ─── Connect Wallet ───────────────────────────────────────────────────────────
 async function connectWallet() {
   const btn = document.getElementById("connect-btn");
   const errDiv = document.getElementById("connect-error");
@@ -370,64 +254,45 @@ async function connectWallet() {
   btn.innerHTML = `<span class="spinner"></span>Connecting...`;
 
   try {
-    // Request account access
     await window.ethereum.request({ method: "eth_requestAccounts" });
-
     provider = new ethers.BrowserProvider(window.ethereum);
     signer = await provider.getSigner();
     walletAddress = await signer.getAddress();
 
-    // Check and switch network
     const network = await provider.getNetwork();
     if (Number(network.chainId) !== CONFIG.CHAIN_ID) {
       try {
-        await window.ethereum.request({
-          method: "wallet_switchEthereumChain",
-          params: [{ chainId: CONFIG.CHAIN_ID_HEX }],
-        });
+        await window.ethereum.request({ method: "wallet_switchEthereumChain", params: [{ chainId: CONFIG.CHAIN_ID_HEX }] });
       } catch (switchErr) {
         if (switchErr.code === 4902) {
-          // Add HeLa network to MetaMask
-          await window.ethereum.request({
-            method: "wallet_addEthereumChain",
-            params: [{
-              chainId: CONFIG.CHAIN_ID_HEX,
-              chainName: CONFIG.NETWORK_NAME,
-              rpcUrls: [CONFIG.RPC_URL],
-              blockExplorerUrls: [CONFIG.EXPLORER_URL],
-              nativeCurrency: { name: "HELA", symbol: "HELA", decimals: 18 },
-            }],
-          });
+          await window.ethereum.request({ method: "wallet_addEthereumChain", params: [{ chainId: CONFIG.CHAIN_ID_HEX, chainName: CONFIG.NETWORK_NAME, rpcUrls: [CONFIG.RPC_URL], blockExplorerUrls: [CONFIG.EXPLORER_URL], nativeCurrency: { name: "HELA", symbol: "HELA", decimals: 18 } }] });
         } else throw switchErr;
       }
-      // Re-init after network switch
       provider = new ethers.BrowserProvider(window.ethereum);
       signer = await provider.getSigner();
       walletAddress = await signer.getAddress();
     }
 
-    // Init contract
+    if (CONFIG.CONTRACT_ADDRESS === "0xYOUR_DEPLOYED_ADDRESS_HERE") throw new Error("Update CONTRACT_ADDRESS in config.js after deploying.");
+    if (!CONFIG.ORACLE_URL) throw new Error("Set ORACLE_URL in config.js (e.g. http://localhost:3001)");
+
+    // Verify oracle server is reachable
+    try {
+      const health = await fetch(CONFIG.ORACLE_URL + "/health");
+      if (!health.ok) throw new Error();
+      const { oracle } = await health.json();
+      console.log("Oracle server connected:", oracle);
+    } catch {
+      throw new Error("Oracle server not reachable. Run: cd oracle-server && npm start");
+    }
+
     contract = new ethers.Contract(CONFIG.CONTRACT_ADDRESS, CONFIG.CONTRACT_ABI, signer);
 
-    // Init oracle wallet — used OFF-CHAIN to sign AI results
-    // The contract verifies this signature before accepting any payment
-    if (!CONFIG.ORACLE_PRIVATE_KEY || CONFIG.ORACLE_PRIVATE_KEY === "0xYOUR_ORACLE_PRIVATE_KEY_HERE") {
-      throw new Error("Oracle private key not set in config.js. Copy it from deployedData.json.");
-    }
-    oracleWallet = new ethers.Wallet(CONFIG.ORACLE_PRIVATE_KEY);
-
-    // Verify contract exists
-    if (CONFIG.CONTRACT_ADDRESS === "0xYOUR_DEPLOYED_ADDRESS_HERE") {
-      throw new Error("Contract not deployed yet! Update CONTRACT_ADDRESS in config.js after running deploy.js");
-    }
-
-    // All good — show app
     document.getElementById("screen-connect").style.display = "none";
     document.getElementById("screen-app").style.display = "block";
 
     await initApp();
 
-    // Listen for account/network changes
     window.ethereum.on("accountsChanged", () => location.reload());
     window.ethereum.on("chainChanged", () => location.reload());
 
@@ -439,21 +304,15 @@ async function connectWallet() {
   }
 }
 
-// ─── Init App ─────────────────────────────────────────────────────────────────
 async function initApp() {
-  // Wallet info
   const balance = await provider.getBalance(walletAddress);
   document.getElementById("wallet-balance").textContent = fmtEther(balance) + " HELA";
   document.getElementById("wallet-address").textContent = shortAddr(walletAddress);
-
-  // Contract info
   const short = shortAddr(CONFIG.CONTRACT_ADDRESS);
   document.getElementById("stat-contract").textContent = short;
   const link = CONFIG.EXPLORER_URL + "/address/" + CONFIG.CONTRACT_ADDRESS;
   document.getElementById("contract-link").href = link;
   document.getElementById("contract-link").textContent = short;
-
-  // Load stats + payments
   await loadStats();
   await loadMyPayments();
 }
@@ -462,32 +321,20 @@ async function loadStats() {
   try {
     const total = await contract.totalPayments();
     document.getElementById("stat-total").textContent = total.toString();
-
     const sent = await contract.getSentPayments(walletAddress);
     document.getElementById("stat-sent").textContent = sent.length.toString();
-
     const received = await contract.getReceivedPayments(walletAddress);
     document.getElementById("stat-received").textContent = received.length.toString();
-  } catch (e) {
-    console.error("loadStats:", e);
-  }
+  } catch (e) { console.error("loadStats:", e); }
 }
 
 async function loadMyPayments() {
   myPayments = [];
   try {
-    const [sentIds, receivedIds] = await Promise.all([
-      contract.getSentPayments(walletAddress),
-      contract.getReceivedPayments(walletAddress),
-    ]);
-
-    // Fetch unique payment details
+    const [sentIds, receivedIds] = await Promise.all([contract.getSentPayments(walletAddress), contract.getReceivedPayments(walletAddress)]);
     const allIds = [...new Set([...sentIds, ...receivedIds].map(n => n.toString()))];
     const fetched = await Promise.all(allIds.map(id => contract.getPayment(id).catch(() => null)));
-    myPayments = fetched
-      .filter(Boolean)
-      .sort((a, b) => Number(b.timestamp) - Number(a.timestamp));
-
+    myPayments = fetched.filter(Boolean).sort((a, b) => Number(b.timestamp) - Number(a.timestamp));
     renderTxList("recent-txs", myPayments.slice(0, 8));
     renderTxList("all-txs", myPayments);
   } catch (e) {
@@ -497,40 +344,23 @@ async function loadMyPayments() {
   }
 }
 
-// ─── Render helpers ───────────────────────────────────────────────────────────
 function renderRiskBar(score) {
   const c = riskColor(score);
-  return `<div style="display:flex;align-items:center;gap:6px;">
-    <div style="flex:1;height:4px;background:#1e293b;border-radius:2px;overflow:hidden;">
-      <div style="width:${score}%;height:100%;background:${c};border-radius:2px;box-shadow:0 0 6px ${c}88;"></div>
-    </div>
-    <span style="font-size:11px;color:${c};font-weight:600;min-width:24px;">${score}</span>
-  </div>`;
+  return `<div style="display:flex;align-items:center;gap:6px;"><div style="flex:1;height:4px;background:#1e293b;border-radius:2px;overflow:hidden;"><div style="width:${score}%;height:100%;background:${c};border-radius:2px;box-shadow:0 0 6px ${c}88;"></div></div><span style="font-size:11px;color:${c};font-weight:600;min-width:24px;">${score}</span></div>`;
 }
 
 function renderStatusBadge(statusNum) {
   const name = STATUS[statusNum] || "Unknown";
   const s = STATUS_STYLE[name] || STATUS_STYLE.Pending;
-  return `<div style="display:inline-flex;align-items:center;gap:5px;background:${s.bg};color:${s.color};padding:3px 8px;border-radius:20px;font-size:11px;font-weight:600;">
-    <div style="width:5px;height:5px;border-radius:50%;background:${s.dot};"></div>${name}
-  </div>`;
+  return `<div style="display:inline-flex;align-items:center;gap:5px;background:${s.bg};color:${s.color};padding:3px 8px;border-radius:20px;font-size:11px;font-weight:600;"><div style="width:5px;height:5px;border-radius:50%;background:${s.dot};"></div>${name}</div>`;
 }
 
 function renderTxRow(tx) {
   const isSender = tx.sender.toLowerCase() === walletAddress.toLowerCase();
-  const explorerTx = CONFIG.EXPLORER_URL + "/address/" + CONFIG.CONTRACT_ADDRESS;
   return `<div class="tx-grid fade-in">
     <div style="color:var(--dim);font-family:'DM Mono',monospace;font-size:11px;">#${tx.id}</div>
-    <div>
-      <div style="color:var(--text);font-weight:500;margin-bottom:2px;">${tx.memo || "—"}</div>
-      <div style="color:var(--dim);font-family:'DM Mono',monospace;font-size:10px;">
-        ${isSender ? "→ To: "+shortAddr(tx.recipient) : "← From: "+shortAddr(tx.sender)}
-      </div>
-    </div>
-    <div style="text-align:right;">
-      <div style="color:var(--text);font-weight:600;font-family:'DM Mono',monospace;">${fmtEther(tx.amount)} HELA</div>
-      <div style="color:var(--dim);font-size:10px;">fee ${fmtEther(tx.fee)}</div>
-    </div>
+    <div><div style="color:var(--text);font-weight:500;margin-bottom:2px;">${tx.memo || "—"}</div><div style="color:var(--dim);font-family:'DM Mono',monospace;font-size:10px;">${isSender ? "→ To: "+shortAddr(tx.recipient) : "← From: "+shortAddr(tx.sender)}</div></div>
+    <div style="text-align:right;"><div style="color:var(--text);font-weight:600;font-family:'DM Mono',monospace;">${fmtEther(tx.amount)} HELA</div><div style="color:var(--dim);font-size:10px;">fee ${fmtEther(tx.fee)}</div></div>
     <div>${renderRiskBar(tx.riskScore)}</div>
     <div>${renderStatusBadge(tx.status)}</div>
     <div style="color:var(--dim);font-size:11px;text-align:right;">${fmtTime(tx.timestamp)}</div>
@@ -539,23 +369,15 @@ function renderTxRow(tx) {
 
 function renderTxList(elId, txs) {
   const el = document.getElementById(elId);
-  if (!txs || txs.length === 0) {
-    el.innerHTML = `<div style="padding:40px;text-align:center;color:var(--muted);font-size:13px;">No transactions found for your wallet</div>`;
-    return;
-  }
+  if (!txs || txs.length === 0) { el.innerHTML = `<div style="padding:40px;text-align:center;color:var(--muted);font-size:13px;">No transactions found for your wallet</div>`; return; }
   el.innerHTML = txs.map(renderTxRow).join("");
 }
 
-// ─── AI Analysis ──────────────────────────────────────────────────────────────
 function onAmountInput() {
   const amt = parseFloat(document.getElementById("send-amount").value) || 0;
   const fp = document.getElementById("fee-preview");
-  if (amt > 0) {
-    fp.style.display = "block";
-    fp.textContent = `Fee: ${(amt * 0.005).toFixed(6)} HELA · Net: ${(amt * 0.995).toFixed(6)} HELA`;
-  } else {
-    fp.style.display = "none";
-  }
+  if (amt > 0) { fp.style.display = "block"; fp.textContent = `Fee: ${(amt*0.005).toFixed(6)} HELA · Net: ${(amt*0.995).toFixed(6)} HELA`; }
+  else { fp.style.display = "none"; }
   triggerAI();
 }
 
@@ -566,10 +388,7 @@ function triggerAI() {
   const to = document.getElementById("to-address").value.trim();
   const amount = document.getElementById("send-amount").value;
   const memo = document.getElementById("send-memo").value.trim();
-  if (!to || !amount || !memo) {
-    document.getElementById("ai-result").style.display = "none";
-    return;
-  }
+  if (!to || !amount || !memo) { document.getElementById("ai-result").style.display = "none"; return; }
   aiDebounce = setTimeout(() => runAI(to, amount, memo), 700);
 }
 
@@ -583,11 +402,9 @@ async function runAI(to, amount, memo) {
     currentAiSignature = result.aiSignature;
 
     const col = result.riskScore >= 75 ? "#ef4444" : result.riskScore >= 40 ? "#f59e0b" : "#22c55e";
-    const rec = result.recommendation === "escrow"
-      ? "⚠ Auto-escrow will be triggered"
-      : result.recommendation === "review"
-      ? "◎ Manual review suggested"
-      : "✓ Approved for direct transfer";
+    const rec = result.recommendation === "escrow" ? "⚠ Auto-escrow will be triggered"
+              : result.recommendation === "review"  ? "◎ Manual review suggested"
+              : "✓ Approved for direct transfer";
 
     document.getElementById("ai-result").innerHTML = `
       <div style="background:var(--surface2);border:1px solid ${col}44;border-radius:12px;padding:12px 16px;">
@@ -604,12 +421,10 @@ async function runAI(to, amount, memo) {
         </div>
         ${result.flags.length ? `<div style="display:flex;gap:4px;flex-wrap:wrap;">${result.flags.map(f=>`<span style="font-size:10px;background:var(--border);color:#94a3b8;padding:2px 7px;border-radius:10px;">${f.replace(/_/g,' ')}</span>`).join('')}</div>` : ""}
         <div style="font-size:10px;color:var(--dim);margin-top:8px;font-family:'DM Mono',monospace;">Hash: ${result.aiMetaHash.slice(0,18)}...</div>
-        <div style="font-size:10px;color:#16a34a;margin-top:2px;font-family:'DM Mono',monospace;">Oracle sig: ${result.aiSignature ? result.aiSignature.slice(0,18)+"..." : "⚠ not signed — set ORACLE_PRIVATE_KEY"}</div>
+        <div style="font-size:10px;color:#16a34a;margin-top:2px;font-family:'DM Mono',monospace;">Oracle sig: ${result.aiSignature ? result.aiSignature.slice(0,18)+"..." : "⚠ not signed"}</div>
       </div>`;
     document.getElementById("ai-result").style.display = "block";
-
-    const btn = document.getElementById("send-btn");
-    btn.textContent = result.recommendation === "escrow" ? "⚠ Send to Escrow" : "Send Payment →";
+    document.getElementById("send-btn").textContent = result.recommendation === "escrow" ? "⚠ Send to Escrow" : "Send Payment →";
   } catch(e) {
     console.error("AI error:", e);
   } finally {
@@ -617,7 +432,6 @@ async function runAI(to, amount, memo) {
   }
 }
 
-// ─── Send Payment ─────────────────────────────────────────────────────────────
 async function sendPayment() {
   const msgEl = document.getElementById("send-msg");
   const btn = document.getElementById("send-btn");
@@ -627,56 +441,29 @@ async function sendPayment() {
   const amountStr = document.getElementById("send-amount").value;
   const memo = document.getElementById("send-memo").value.trim();
 
-  if (!to || !amountStr || !memo) {
-    msgEl.innerHTML = `<div class="alert-error">Please fill in all fields.</div>`;
-    msgEl.style.display = "block";
-    return;
-  }
-
-  if (!ethers.isAddress(to)) {
-    msgEl.innerHTML = `<div class="alert-error">Invalid recipient address.</div>`;
-    msgEl.style.display = "block";
-    return;
-  }
-
+  if (!to || !amountStr || !memo) { msgEl.innerHTML = `<div class="alert-error">Please fill in all fields.</div>`; msgEl.style.display = "block"; return; }
+  if (!ethers.isAddress(to)) { msgEl.innerHTML = `<div class="alert-error">Invalid recipient address.</div>`; msgEl.style.display = "block"; return; }
   const amount = parseFloat(amountStr);
-  if (isNaN(amount) || amount <= 0) {
-    msgEl.innerHTML = `<div class="alert-error">Invalid amount.</div>`;
-    msgEl.style.display = "block";
-    return;
-  }
+  if (isNaN(amount) || amount <= 0) { msgEl.innerHTML = `<div class="alert-error">Invalid amount.</div>`; msgEl.style.display = "block"; return; }
 
   btn.disabled = true;
   btn.innerHTML = `<span class="spinner"></span>Waiting for MetaMask...`;
 
   try {
     const value = ethers.parseEther(amountStr);
-
     msgEl.innerHTML = `<div class="alert-info"><span class="spinner"></span>Transaction submitted. Waiting for block confirmation...</div>`;
     msgEl.style.display = "block";
 
-    const tx = await contract.sendPayment(
-      to,
-      memo,
-      currentAiHash,
-      currentRiskScore,
-      currentAiSignature,
-      { value }
-    );
-
+    const tx = await contract.sendPayment(to, memo, currentAiHash, currentRiskScore, currentAiSignature, { value });
     btn.innerHTML = `<span class="spinner"></span>Confirming on HeLa...`;
 
     const receipt = await tx.wait();
-    const txHash = receipt.hash;
-    const explorerLink = `${CONFIG.EXPLORER_URL}/tx/${txHash}`;
-
     msgEl.innerHTML = `<div class="alert-success">
       ✓ Transaction confirmed on HeLa blockchain!
-      <div style="margin-top:6px;font-family:'DM Mono',monospace;font-size:11px;">${txHash.slice(0,20)}...</div>
-      <a href="${explorerLink}" target="_blank" style="font-size:12px;color:#22c55e;text-decoration:underline;">View on HeLa Scan ↗</a>
+      <div style="margin-top:6px;font-family:'DM Mono',monospace;font-size:11px;">${receipt.hash.slice(0,20)}...</div>
+      <a href="${CONFIG.EXPLORER_URL}/tx/${receipt.hash}" target="_blank" style="font-size:12px;color:#22c55e;text-decoration:underline;">View on HeLa Scan ↗</a>
     </div>`;
 
-    // Reset form
     document.getElementById("to-address").value = "";
     document.getElementById("send-amount").value = "";
     document.getElementById("send-memo").value = "";
@@ -686,19 +473,15 @@ async function sendPayment() {
     currentAiHash = ethers.ZeroHash;
     currentAiSignature = "0x";
 
-    // Refresh data
     await loadStats();
     await loadMyPayments();
-
-    // Refresh balance
-    const balance = await provider.getBalance(walletAddress);
-    document.getElementById("wallet-balance").textContent = fmtEther(balance) + " HELA";
+    await refreshBalance();
 
   } catch (err) {
     console.error(err);
-    let msg = err.message;
-    if (err.reason) msg = err.reason;
+    let msg = extractErrorMessage(err);
     if (msg.includes("user rejected")) msg = "Transaction cancelled in MetaMask.";
+    if (msg.includes("insufficient funds") || msg.includes("estimateGas") || msg.includes("CALL_EXCEPTION")) msg = "Not enough HELA tokens in your wallet.";
     msgEl.innerHTML = `<div class="alert-error">⚠ ${msg}</div>`;
   } finally {
     btn.disabled = false;
@@ -706,7 +489,6 @@ async function sendPayment() {
   }
 }
 
-// ─── Escrow ───────────────────────────────────────────────────────────────────
 async function releaseEscrow() {
   const id = document.getElementById("escrow-id").value;
   const msgEl = document.getElementById("escrow-msg");
@@ -718,9 +500,7 @@ async function releaseEscrow() {
     await tx.wait();
     msgEl.innerHTML = `<div class="alert-success">✓ Escrow released! Funds sent to recipient.<br><a href="${CONFIG.EXPLORER_URL}/tx/${tx.hash}" target="_blank" style="color:#22c55e;font-size:12px;">View on HeLa Scan ↗</a></div>`;
     await loadMyPayments();
-  } catch (e) {
-    msgEl.innerHTML = `<div class="alert-error">⚠ ${e.reason || e.message}</div>`;
-  }
+  } catch (e) { msgEl.innerHTML = `<div class="alert-error">⚠ ${extractErrorMessage(e)}</div>`; }
 }
 
 async function refundEscrow() {
@@ -734,9 +514,7 @@ async function refundEscrow() {
     await tx.wait();
     msgEl.innerHTML = `<div class="alert-success">✓ Escrowed funds refunded back to sender!<br><a href="${CONFIG.EXPLORER_URL}/tx/${tx.hash}" target="_blank" style="color:#22c55e;font-size:12px;">View on HeLa Scan ↗</a></div>`;
     await loadMyPayments();
-  } catch (e) {
-    msgEl.innerHTML = `<div class="alert-error">⚠ ${e.reason || e.message}</div>`;
-  }
+  } catch (e) { msgEl.innerHTML = `<div class="alert-error">⚠ ${extractErrorMessage(e)}</div>`; }
 }
 
 async function lookupPayment() {
@@ -751,36 +529,18 @@ async function lookupPayment() {
     const sc = STATUS_STYLE[statusName] || STATUS_STYLE.Pending;
     resultEl.innerHTML = `<div style="background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:16px;font-size:12px;">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-        ${[
-          ["ID", p.id.toString()],
-          ["Status", `<span style="color:${sc.color};font-weight:600;">${statusName}</span>`],
-          ["Sender", shortAddr(p.sender)],
-          ["Recipient", shortAddr(p.recipient)],
-          ["Amount", fmtEther(p.amount)+" HELA"],
-          ["Fee", fmtEther(p.fee)+" HELA"],
-          ["Net", fmtEther(p.netAmount)+" HELA"],
-          ["Risk Score", `<span style="color:${riskColor(p.riskScore)};font-weight:600;">${p.riskScore}/100</span>`],
-          ["Memo", p.memo || "—"],
-          ["Time", fmtTime(p.timestamp)],
-        ].map(([k,v])=>`<div><span style="color:var(--muted);">${k}: </span><span style="font-family:'DM Mono',monospace;">${v}</span></div>`).join("")}
+        ${[["ID",p.id.toString()],["Status",`<span style="color:${sc.color};font-weight:600;">${statusName}</span>`],["Sender",shortAddr(p.sender)],["Recipient",shortAddr(p.recipient)],["Amount",fmtEther(p.amount)+" HELA"],["Fee",fmtEther(p.fee)+" HELA"],["Net",fmtEther(p.netAmount)+" HELA"],["Risk Score",`<span style="color:${riskColor(p.riskScore)};font-weight:600;">${p.riskScore}/100</span>`],["Memo",p.memo||"—"],["Time",fmtTime(p.timestamp)]].map(([k,v])=>`<div><span style="color:var(--muted);">${k}: </span><span style="font-family:'DM Mono',monospace;">${v}</span></div>`).join("")}
       </div>
       <div style="margin-top:8px;font-size:10px;color:var(--dim);">AI Hash: ${p.aiMetadataHash.slice(0,20)}...</div>
     </div>`;
-  } catch (e) {
-    resultEl.innerHTML = `<div class="alert-error">⚠ ${e.reason || e.message}</div>`;
-  }
+  } catch (e) { resultEl.innerHTML = `<div class="alert-error">⚠ ${extractErrorMessage(e)}</div>`; }
 }
 
-// ─── Tabs ─────────────────────────────────────────────────────────────────────
 function showTab(tab) {
   ["send","ledger","escrow"].forEach(t => {
     document.getElementById("tab-"+t).classList.toggle("active", t===tab);
     const el = document.getElementById("content-"+t);
-    if (t === tab) {
-      el.style.display = t === "escrow" ? "grid" : (t === "send" ? "grid" : "block");
-    } else {
-      el.style.display = "none";
-    }
+    el.style.display = t === tab ? (t === "escrow" ? "grid" : t === "send" ? "grid" : "block") : "none";
   });
   if (tab === "ledger") loadMyPayments();
 }

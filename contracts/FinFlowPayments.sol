@@ -7,7 +7,7 @@ contract FinFlowPayments {
 
     address public owner;
     address public pauser;
-    address public trustedOracle;   // AI oracle wallet — signs risk scores off-chain
+    address public trustedOracle;  
     bool    public paused;
 
     uint256 public constant MAX_FEE_BPS = 300;  // 3% hard cap
